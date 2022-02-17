@@ -5,8 +5,8 @@ const displayTimerName = document.querySelector("#timer-name-spn")
 const nextTimerToggle = document.querySelector("#next-timer")
 let currentLevel = 0;
 let timerDurations=[
-    {name:"Work",duration:5},
-    {name:"Rest",duration:2}
+    {name:"Work",duration:3120},
+    {name:"Rest",duration:1020}
 ];
 let duration = timerDurations[currentLevel].duration;
 let secondsRemaining;
