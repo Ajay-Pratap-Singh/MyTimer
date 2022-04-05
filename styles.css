@@ -1,0 +1,68 @@
+.clickable-icon{
+    fill:gray;
+    cursor: pointer;
+    height: 1em;
+    opacity: 0.9;
+    transition: 0.1s;
+}
+.clickable-icon:hover{
+    fill: black;
+    opacity: 1;
+    transform: scale(1.8);
+    transition: 0.1s;
+}
+.clickable-icon:active{
+    fill: cadetblue;
+    transition: 0.2s;
+    transform: scale(3);
+}
+.not-active{
+    display: none;
+}
+
+.active{
+    fill:coral !important;
+}
+
+.icon-button{
+    background-color: transparent;
+    border: none;
+}
+
+.main-container{
+    background-color:beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 97vh;
+}
+
+#timer-duration-spn{
+    font-family: 'Teko', sans-serif;
+    /* font-family: 'Anton', sans-serif; */
+    font-size: 9em;
+}
+
+#timer-container{
+    text-align: center;
+    margin-top: -8em;
+    font-family:'Raleway', sans-serif;
+    font-size: large;
+}
+
+#play-pause-bar{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 4em 8em 4em;
+}
+
+#top-bar{
+    text-align: right;
+    margin: 0.8em;
+}
+
+#timer-name-spn{
+    font-family: inherit;
+    font-size: inherit;
+
+}

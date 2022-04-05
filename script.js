@@ -1,4 +1,5 @@
 const playPauseButton = document.querySelector("#start-btn")
+const paths = playPauseButton.querySelectorAll("path")
 const cancelButton = document.querySelector("#cancel-btn")
 const displayTimerDuration = document.querySelector("#timer-duration-spn")
 const displayTimerName = document.querySelector("#timer-name-spn")
@@ -10,11 +11,12 @@ let confirmTimerChange;
 let timerChangeLabel;
 let currentLevel = 0;
 let timerDurations=[
-    {name:"Work1",duration:3120},
+    {name:"Work",duration:3120},
     {name:"Rest",duration:1020},
+    // {name:"Work-2",duration:10},
 ];
-let duration = timerDurations[currentLevel].duration;
 let secondsRemaining;
+let duration = timerDurations[currentLevel].duration;
 let min = duration / 60 | 0;
 let seconds = duration % 60;
 displayTimerDuration.innerHTML = String(min).padStart(2,0)+" : "+String(seconds).padStart(2,0);
@@ -37,15 +39,22 @@ function startTimer() {
         currentLevel=(currentLevel+1)%timerDurations.length;
         clearInterval(timer)
         playSound("sounds/you-have-new-message-484.mp3")
-        playPauseButton.innerHTML = "Start";
+        paths[0].classList.remove("not-active");
+        paths[1].classList.remove("not-active");
+        paths[1].classList.add("not-active");
+        // playPauseButton.innerHTML = "Start";
         timer = null;
         duration = timerDurations[currentLevel].duration;
         min = duration / 60 | 0;
         seconds = duration % 60;
         displayTimerDuration.innerHTML = String(min).padStart(2,0)+" : "+String(seconds).padStart(2,0);
         displayTimerName.innerHTML = `${timerDurations[currentLevel].name}`
-        if(nextTimerToggle.checked && currentLevel != 0){
-            playPauseButton.innerHTML= "Pause";
+        // if(nextTimerToggle.checked && currentLevel != 0){
+        if(nextTimerToggle.classList.contains("active") && currentLevel != 0){
+            paths[0].classList.remove("not-active");
+            paths[1].classList.remove("not-active");
+            paths[0].classList.add("not-active");
+            // playPauseButton.innerHTML= "Pause";
             startTime = Date.now()/1000 | 0;
             startTimer();
             timer = setInterval(startTimer,1000);
@@ -54,7 +63,7 @@ function startTimer() {
 }
 
 playPauseButton.addEventListener("click",()=>{
-    playPauseButton.innerHTML= playPauseButton.innerHTML=="Start" ?"Pause":"Start";
+    paths.forEach(e=>e.classList.toggle("not-active"));
     if(timer){
         clearInterval(timer);
         timer = null;
@@ -81,7 +90,10 @@ displayTimerName.addEventListener("click",()=>{
     confirmTimerChange.addEventListener("click",()=>{
         currentLevel=selectTimerDuration.value;
         clearInterval(timer)
-        playPauseButton.innerHTML = "Start";
+        paths[0].classList.remove("not-active");
+        paths[1].classList.remove("not-active");
+        paths[1].classList.add("not-active");
+        // playPauseButton.innerHTML = "Start";
         timer = null;
         duration = timerDurations[currentLevel].duration;
         min = duration / 60 | 0;
@@ -119,7 +131,10 @@ cancelButton.addEventListener("click",()=>{
         clearInterval(timer);
         timer = null;
     }
-    playPauseButton.innerHTML = "Start";
+    paths[0].classList.remove("not-active");
+    paths[1].classList.remove("not-active");
+    paths[1].classList.add("not-active");
+    // playPauseButton.innerHTML = "Start";
     duration = timerDurations[currentLevel].duration
     min = duration / 60 | 0;
     seconds = duration % 60;
